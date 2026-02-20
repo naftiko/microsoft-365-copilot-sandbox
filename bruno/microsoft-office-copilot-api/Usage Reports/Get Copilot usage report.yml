@@ -1,0 +1,367 @@
+info:
+  name: Get Copilot usage report
+  type: http
+  seq: 1
+  tags:
+    - Usage Reports
+
+http:
+  method: GET
+  url: "{{baseUrl}}/reports/copilot/usage?period=D7&period=D30&period=D90&period=D180&$top=25&$skip=0"
+  params:
+    - name: period
+      value: D7
+      type: query
+      description: |
+        The reporting period. Supported values: D7, D30, D90, D180.
+    - name: period
+      value: D30
+      type: query
+      description: |
+        The reporting period. Supported values: D7, D30, D90, D180.
+    - name: period
+      value: D90
+      type: query
+      description: |
+        The reporting period. Supported values: D7, D30, D90, D180.
+    - name: period
+      value: D180
+      type: query
+      description: |
+        The reporting period. Supported values: D7, D30, D90, D180.
+    - name: date
+      value: ""
+      type: query
+      description: |
+        Specific date to report on (ISO 8601 date). If omitted, returns the latest available data.
+      disabled: true
+    - name: $top
+      value: "25"
+      type: query
+      description: Maximum number of results to return.
+    - name: $skip
+      value: "0"
+      type: query
+      description: Number of results to skip for pagination.
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+examples:
+  - name: Default
+    request:
+      url: "{{baseUrl}}/reports/copilot/usage"
+      method: GET
+      params:
+        - name: period
+          value: D7
+          type: query
+          description: |
+            The reporting period. Supported values: D7, D30, D90, D180.
+        - name: period
+          value: D30
+          type: query
+          description: |
+            The reporting period. Supported values: D7, D30, D90, D180.
+          disabled: true
+        - name: period
+          value: D90
+          type: query
+          description: |
+            The reporting period. Supported values: D7, D30, D90, D180.
+          disabled: true
+        - name: period
+          value: D180
+          type: query
+          description: |
+            The reporting period. Supported values: D7, D30, D90, D180.
+          disabled: true
+        - name: date
+          value: ""
+          type: query
+          description: |
+            Specific date to report on (ISO 8601 date). If omitted, returns the latest available data.
+          disabled: true
+        - name: $top
+          value: "25"
+          type: query
+          description: Maximum number of results to return.
+        - name: $skip
+          value: "0"
+          type: query
+          description: Number of results to skip for pagination.
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "value": [
+              {
+                "reportDate": "2025-09-10",
+                "totalEnabledUsers": 5000,
+                "totalActiveUsers": 3250,
+                "wordActiveUsers": 2100,
+                "excelActiveUsers": 1800,
+                "powerPointActiveUsers": 1200,
+                "outlookActiveUsers": 2800,
+                "teamsActiveUsers": 2500,
+                "oneNoteActiveUsers": 600,
+                "loopActiveUsers": 350,
+                "copilotChatActiveUsers": 1900
+              }
+            ],
+            "@odata.count": 1
+          }
+  - name: Default
+    request:
+      url: "{{baseUrl}}/reports/copilot/usage"
+      method: GET
+      params:
+        - name: period
+          value: D7
+          type: query
+          description: |
+            The reporting period. Supported values: D7, D30, D90, D180.
+        - name: period
+          value: D30
+          type: query
+          description: |
+            The reporting period. Supported values: D7, D30, D90, D180.
+          disabled: true
+        - name: period
+          value: D90
+          type: query
+          description: |
+            The reporting period. Supported values: D7, D30, D90, D180.
+          disabled: true
+        - name: period
+          value: D180
+          type: query
+          description: |
+            The reporting period. Supported values: D7, D30, D90, D180.
+          disabled: true
+        - name: date
+          value: ""
+          type: query
+          description: |
+            Specific date to report on (ISO 8601 date). If omitted, returns the latest available data.
+          disabled: true
+        - name: $top
+          value: "25"
+          type: query
+          description: Maximum number of results to return.
+        - name: $skip
+          value: "0"
+          type: query
+          description: Number of results to skip for pagination.
+    response:
+      status: 401
+      statusText: Unauthorized
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "error": {
+              "code": "Unauthorized",
+              "message": "Authentication token is missing, expired, or invalid.",
+              "innerError": {
+                "requestId": "req-err-401-001",
+                "date": "2025-09-10T12:00:00Z"
+              }
+            }
+          }
+  - name: Default
+    request:
+      url: "{{baseUrl}}/reports/copilot/usage"
+      method: GET
+      params:
+        - name: period
+          value: D7
+          type: query
+          description: |
+            The reporting period. Supported values: D7, D30, D90, D180.
+        - name: period
+          value: D30
+          type: query
+          description: |
+            The reporting period. Supported values: D7, D30, D90, D180.
+          disabled: true
+        - name: period
+          value: D90
+          type: query
+          description: |
+            The reporting period. Supported values: D7, D30, D90, D180.
+          disabled: true
+        - name: period
+          value: D180
+          type: query
+          description: |
+            The reporting period. Supported values: D7, D30, D90, D180.
+          disabled: true
+        - name: date
+          value: ""
+          type: query
+          description: |
+            Specific date to report on (ISO 8601 date). If omitted, returns the latest available data.
+          disabled: true
+        - name: $top
+          value: "25"
+          type: query
+          description: Maximum number of results to return.
+        - name: $skip
+          value: "0"
+          type: query
+          description: Number of results to skip for pagination.
+    response:
+      status: 403
+      statusText: Forbidden
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "error": {
+              "code": "Forbidden",
+              "message": "Insufficient privileges to complete the operation. Verify the required permissions are granted.",
+              "innerError": {
+                "requestId": "req-err-403-001",
+                "date": "2025-09-10T12:00:00Z"
+              }
+            }
+          }
+  - name: Default
+    request:
+      url: "{{baseUrl}}/reports/copilot/usage"
+      method: GET
+      params:
+        - name: period
+          value: D7
+          type: query
+          description: |
+            The reporting period. Supported values: D7, D30, D90, D180.
+        - name: period
+          value: D30
+          type: query
+          description: |
+            The reporting period. Supported values: D7, D30, D90, D180.
+          disabled: true
+        - name: period
+          value: D90
+          type: query
+          description: |
+            The reporting period. Supported values: D7, D30, D90, D180.
+          disabled: true
+        - name: period
+          value: D180
+          type: query
+          description: |
+            The reporting period. Supported values: D7, D30, D90, D180.
+          disabled: true
+        - name: date
+          value: ""
+          type: query
+          description: |
+            Specific date to report on (ISO 8601 date). If omitted, returns the latest available data.
+          disabled: true
+        - name: $top
+          value: "25"
+          type: query
+          description: Maximum number of results to return.
+        - name: $skip
+          value: "0"
+          type: query
+          description: Number of results to skip for pagination.
+    response:
+      status: 429
+      statusText: Too Many Requests
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "error": {
+              "code": "TooManyRequests",
+              "message": "Rate limit exceeded. Please retry after the number of seconds specified in the Retry-After header.",
+              "innerError": {
+                "requestId": "req-err-429-001",
+                "date": "2025-09-10T12:00:00Z"
+              }
+            }
+          }
+  - name: Default
+    request:
+      url: "{{baseUrl}}/reports/copilot/usage"
+      method: GET
+      params:
+        - name: period
+          value: D7
+          type: query
+          description: |
+            The reporting period. Supported values: D7, D30, D90, D180.
+        - name: period
+          value: D30
+          type: query
+          description: |
+            The reporting period. Supported values: D7, D30, D90, D180.
+          disabled: true
+        - name: period
+          value: D90
+          type: query
+          description: |
+            The reporting period. Supported values: D7, D30, D90, D180.
+          disabled: true
+        - name: period
+          value: D180
+          type: query
+          description: |
+            The reporting period. Supported values: D7, D30, D90, D180.
+          disabled: true
+        - name: date
+          value: ""
+          type: query
+          description: |
+            Specific date to report on (ISO 8601 date). If omitted, returns the latest available data.
+          disabled: true
+        - name: $top
+          value: "25"
+          type: query
+          description: Maximum number of results to return.
+        - name: $skip
+          value: "0"
+          type: query
+          description: Number of results to skip for pagination.
+    response:
+      status: 500
+      statusText: Internal Server Error
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "error": {
+              "code": "InternalServerError",
+              "message": "An unexpected error occurred while processing the request. Please try again later.",
+              "innerError": {
+                "requestId": "req-err-500-001",
+                "date": "2025-09-10T12:00:00Z"
+              }
+            }
+          }

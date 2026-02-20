@@ -1,0 +1,289 @@
+info:
+  name: Send a message to Microsoft 365 Copilot
+  type: http
+  seq: 1
+  tags:
+    - Chat Completions
+
+http:
+  method: POST
+  url: "{{baseUrl}}/copilot/chat/completions"
+  body:
+    type: json
+    data: |-
+      {
+        "messages": [
+          {
+            "role": "system",
+            "content": ""
+          }
+        ],
+        "threadId": "",
+        "options": {
+          "groundInM365Content": false,
+          "maxTokens": 0,
+          "temperature": 0
+        }
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+examples:
+  - name: Default
+    request:
+      url: "{{baseUrl}}/copilot/chat/completions"
+      method: POST
+      body:
+        type: json
+        data: |-
+          {
+            "messages": [
+              {
+                "role": "system",
+                "content": ""
+              }
+            ],
+            "threadId": "",
+            "options": {
+              "groundInM365Content": false,
+              "maxTokens": 0,
+              "temperature": 0
+            }
+          }
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "id": "chatcmpl-001-xyz",
+            "threadId": "thread-abc-123",
+            "created": "2025-09-10T16:00:00Z",
+            "choices": [
+              {
+                "index": 0,
+                "message": {
+                  "role": "assistant",
+                  "content": "Based on your organization's travel policy, international travel requires VP-level approval at least two weeks in advance. The policy also requires booking through the approved travel portal. You can find the full policy in the Employee Handbook on SharePoint."
+                },
+                "finishReason": "stop"
+              }
+            ],
+            "citations": [
+              {
+                "id": "cite-001",
+                "name": "Employee-Handbook-2025.pdf",
+                "webUrl": "https://contoso.sharepoint.com/sites/hr/Employee-Handbook-2025.pdf",
+                "snippet": "International travel requires VP-level approval submitted at least 14 calendar days prior to departure."
+              }
+            ]
+          }
+  - name: Default
+    request:
+      url: "{{baseUrl}}/copilot/chat/completions"
+      method: POST
+      body:
+        type: json
+        data: |-
+          {
+            "messages": [
+              {
+                "role": "system",
+                "content": ""
+              }
+            ],
+            "threadId": "",
+            "options": {
+              "groundInM365Content": false,
+              "maxTokens": 0,
+              "temperature": 0
+            }
+          }
+    response:
+      status: 400
+      statusText: Bad Request
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "error": {
+              "code": "BadRequest",
+              "message": "The request is invalid. Check the request body for missing or malformed fields.",
+              "innerError": {
+                "requestId": "req-err-400-001",
+                "date": "2025-09-10T12:00:00Z"
+              }
+            }
+          }
+  - name: Default
+    request:
+      url: "{{baseUrl}}/copilot/chat/completions"
+      method: POST
+      body:
+        type: json
+        data: |-
+          {
+            "messages": [
+              {
+                "role": "system",
+                "content": ""
+              }
+            ],
+            "threadId": "",
+            "options": {
+              "groundInM365Content": false,
+              "maxTokens": 0,
+              "temperature": 0
+            }
+          }
+    response:
+      status: 401
+      statusText: Unauthorized
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "error": {
+              "code": "Unauthorized",
+              "message": "Authentication token is missing, expired, or invalid.",
+              "innerError": {
+                "requestId": "req-err-401-001",
+                "date": "2025-09-10T12:00:00Z"
+              }
+            }
+          }
+  - name: Default
+    request:
+      url: "{{baseUrl}}/copilot/chat/completions"
+      method: POST
+      body:
+        type: json
+        data: |-
+          {
+            "messages": [
+              {
+                "role": "system",
+                "content": ""
+              }
+            ],
+            "threadId": "",
+            "options": {
+              "groundInM365Content": false,
+              "maxTokens": 0,
+              "temperature": 0
+            }
+          }
+    response:
+      status: 403
+      statusText: Forbidden
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "error": {
+              "code": "Forbidden",
+              "message": "Insufficient privileges to complete the operation. Verify the required permissions are granted.",
+              "innerError": {
+                "requestId": "req-err-403-001",
+                "date": "2025-09-10T12:00:00Z"
+              }
+            }
+          }
+  - name: Default
+    request:
+      url: "{{baseUrl}}/copilot/chat/completions"
+      method: POST
+      body:
+        type: json
+        data: |-
+          {
+            "messages": [
+              {
+                "role": "system",
+                "content": ""
+              }
+            ],
+            "threadId": "",
+            "options": {
+              "groundInM365Content": false,
+              "maxTokens": 0,
+              "temperature": 0
+            }
+          }
+    response:
+      status: 429
+      statusText: Too Many Requests
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "error": {
+              "code": "TooManyRequests",
+              "message": "Rate limit exceeded. Please retry after the number of seconds specified in the Retry-After header.",
+              "innerError": {
+                "requestId": "req-err-429-001",
+                "date": "2025-09-10T12:00:00Z"
+              }
+            }
+          }
+  - name: Default
+    request:
+      url: "{{baseUrl}}/copilot/chat/completions"
+      method: POST
+      body:
+        type: json
+        data: |-
+          {
+            "messages": [
+              {
+                "role": "system",
+                "content": ""
+              }
+            ],
+            "threadId": "",
+            "options": {
+              "groundInM365Content": false,
+              "maxTokens": 0,
+              "temperature": 0
+            }
+          }
+    response:
+      status: 500
+      statusText: Internal Server Error
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "error": {
+              "code": "InternalServerError",
+              "message": "An unexpected error occurred while processing the request. Please try again later.",
+              "innerError": {
+                "requestId": "req-err-500-001",
+                "date": "2025-09-10T12:00:00Z"
+              }
+            }
+          }

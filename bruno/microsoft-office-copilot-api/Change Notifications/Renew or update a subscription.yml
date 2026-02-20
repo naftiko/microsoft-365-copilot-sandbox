@@ -1,0 +1,94 @@
+info:
+  name: Renew or update a subscription
+  type: http
+  seq: 4
+  tags:
+    - Change Notifications
+
+http:
+  method: PATCH
+  url: "{{baseUrl}}/copilot/subscriptions/:subscriptionId"
+  params:
+    - name: subscriptionId
+      value: sub-001-abc
+      type: path
+  body:
+    type: json
+    data: |-
+      {
+        "expirationDateTime": ""
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+examples:
+  - name: Default
+    request:
+      url: "{{baseUrl}}/copilot/subscriptions/:subscriptionId"
+      method: PATCH
+      params:
+        - name: subscriptionId
+          value: ""
+          type: path
+      body:
+        type: json
+        data: |-
+          {
+            "expirationDateTime": ""
+          }
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "id": "sub-001-abc",
+            "resource": "/copilot/interactions",
+            "changeType": "created",
+            "notificationUrl": "https://contoso.com/webhooks/copilot-notifications",
+            "expirationDateTime": "2025-11-15T00:00:00Z",
+            "clientState": "contoso-secret-state-value",
+            "createdDateTime": "2025-09-10T12:00:00Z"
+          }
+  - name: Default
+    request:
+      url: "{{baseUrl}}/copilot/subscriptions/:subscriptionId"
+      method: PATCH
+      params:
+        - name: subscriptionId
+          value: ""
+          type: path
+      body:
+        type: json
+        data: |-
+          {
+            "expirationDateTime": ""
+          }
+    response:
+      status: 404
+      statusText: Not Found
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "error": {
+              "code": "NotFound",
+              "message": "The requested resource could not be found.",
+              "innerError": {
+                "requestId": "req-err-404-001",
+                "date": "2025-09-10T12:00:00Z"
+              }
+            }
+          }

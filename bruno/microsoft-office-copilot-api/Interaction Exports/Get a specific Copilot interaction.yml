@@ -1,0 +1,199 @@
+info:
+  name: Get a specific Copilot interaction
+  type: http
+  seq: 2
+  tags:
+    - Interaction Exports
+
+http:
+  method: GET
+  url: "{{baseUrl}}/copilot/interactions/:interactionId"
+  params:
+    - name: interactionId
+      value: "123"
+      type: path
+      description: Unique identifier for the interaction.
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+examples:
+  - name: Default
+    request:
+      url: "{{baseUrl}}/copilot/interactions/:interactionId"
+      method: GET
+      params:
+        - name: interactionId
+          value: ""
+          type: path
+          description: Unique identifier for the interaction.
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "id": "interaction-001",
+            "createdDateTime": "2025-09-10T10:15:00Z",
+            "userId": "user-abc-123",
+            "userDisplayName": "Jane Doe",
+            "appId": "Word",
+            "interactionType": "prompt",
+            "content": "Summarize the key points from the Q3 sales report.",
+            "contextReferences": [
+              {
+                "type": "driveItem",
+                "id": "01ABCDEF11111111",
+                "name": "Q3-Sales-Report.docx",
+                "webUrl": "https://contoso.sharepoint.com/sites/sales/Q3-Sales-Report.docx"
+              }
+            ]
+          }
+  - name: Default
+    request:
+      url: "{{baseUrl}}/copilot/interactions/:interactionId"
+      method: GET
+      params:
+        - name: interactionId
+          value: ""
+          type: path
+          description: Unique identifier for the interaction.
+    response:
+      status: 401
+      statusText: Unauthorized
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "error": {
+              "code": "Unauthorized",
+              "message": "Authentication token is missing, expired, or invalid.",
+              "innerError": {
+                "requestId": "req-err-401-001",
+                "date": "2025-09-10T12:00:00Z"
+              }
+            }
+          }
+  - name: Default
+    request:
+      url: "{{baseUrl}}/copilot/interactions/:interactionId"
+      method: GET
+      params:
+        - name: interactionId
+          value: ""
+          type: path
+          description: Unique identifier for the interaction.
+    response:
+      status: 403
+      statusText: Forbidden
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "error": {
+              "code": "Forbidden",
+              "message": "Insufficient privileges to complete the operation. Verify the required permissions are granted.",
+              "innerError": {
+                "requestId": "req-err-403-001",
+                "date": "2025-09-10T12:00:00Z"
+              }
+            }
+          }
+  - name: Default
+    request:
+      url: "{{baseUrl}}/copilot/interactions/:interactionId"
+      method: GET
+      params:
+        - name: interactionId
+          value: ""
+          type: path
+          description: Unique identifier for the interaction.
+    response:
+      status: 404
+      statusText: Not Found
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "error": {
+              "code": "NotFound",
+              "message": "The requested resource could not be found.",
+              "innerError": {
+                "requestId": "req-err-404-001",
+                "date": "2025-09-10T12:00:00Z"
+              }
+            }
+          }
+  - name: Default
+    request:
+      url: "{{baseUrl}}/copilot/interactions/:interactionId"
+      method: GET
+      params:
+        - name: interactionId
+          value: ""
+          type: path
+          description: Unique identifier for the interaction.
+    response:
+      status: 429
+      statusText: Too Many Requests
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "error": {
+              "code": "TooManyRequests",
+              "message": "Rate limit exceeded. Please retry after the number of seconds specified in the Retry-After header.",
+              "innerError": {
+                "requestId": "req-err-429-001",
+                "date": "2025-09-10T12:00:00Z"
+              }
+            }
+          }
+  - name: Default
+    request:
+      url: "{{baseUrl}}/copilot/interactions/:interactionId"
+      method: GET
+      params:
+        - name: interactionId
+          value: ""
+          type: path
+          description: Unique identifier for the interaction.
+    response:
+      status: 500
+      statusText: Internal Server Error
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "error": {
+              "code": "InternalServerError",
+              "message": "An unexpected error occurred while processing the request. Please try again later.",
+              "innerError": {
+                "requestId": "req-err-500-001",
+                "date": "2025-09-10T12:00:00Z"
+              }
+            }
+          }

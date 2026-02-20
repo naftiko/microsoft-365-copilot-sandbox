@@ -1,0 +1,142 @@
+info:
+  name: Create a new chat thread
+  type: http
+  seq: 2
+  tags:
+    - Chat Completions
+
+http:
+  method: POST
+  url: "{{baseUrl}}/copilot/chat/threads"
+  body:
+    type: json
+    data: |-
+      {
+        "displayName": "",
+        "initialMessage": ""
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+examples:
+  - name: Default
+    request:
+      url: "{{baseUrl}}/copilot/chat/threads"
+      method: POST
+      body:
+        type: json
+        data: |-
+          {
+            "displayName": "",
+            "initialMessage": ""
+          }
+    response:
+      status: 201
+      statusText: Created
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "id": "thread-abc-123",
+            "displayName": "Travel Policy Questions",
+            "createdDateTime": "2025-09-10T16:00:00Z",
+            "lastUpdatedDateTime": "2025-09-10T16:00:00Z"
+          }
+  - name: Default
+    request:
+      url: "{{baseUrl}}/copilot/chat/threads"
+      method: POST
+      body:
+        type: json
+        data: |-
+          {
+            "displayName": "",
+            "initialMessage": ""
+          }
+    response:
+      status: 400
+      statusText: Bad Request
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "error": {
+              "code": "BadRequest",
+              "message": "The request is invalid. Check the request body for missing or malformed fields.",
+              "innerError": {
+                "requestId": "req-err-400-001",
+                "date": "2025-09-10T12:00:00Z"
+              }
+            }
+          }
+  - name: Default
+    request:
+      url: "{{baseUrl}}/copilot/chat/threads"
+      method: POST
+      body:
+        type: json
+        data: |-
+          {
+            "displayName": "",
+            "initialMessage": ""
+          }
+    response:
+      status: 401
+      statusText: Unauthorized
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "error": {
+              "code": "Unauthorized",
+              "message": "Authentication token is missing, expired, or invalid.",
+              "innerError": {
+                "requestId": "req-err-401-001",
+                "date": "2025-09-10T12:00:00Z"
+              }
+            }
+          }
+  - name: Default
+    request:
+      url: "{{baseUrl}}/copilot/chat/threads"
+      method: POST
+      body:
+        type: json
+        data: |-
+          {
+            "displayName": "",
+            "initialMessage": ""
+          }
+    response:
+      status: 429
+      statusText: Too Many Requests
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "error": {
+              "code": "TooManyRequests",
+              "message": "Rate limit exceeded. Please retry after the number of seconds specified in the Retry-After header.",
+              "innerError": {
+                "requestId": "req-err-429-001",
+                "date": "2025-09-10T12:00:00Z"
+              }
+            }
+          }

@@ -1,0 +1,73 @@
+info:
+  name: Get a chat thread
+  type: http
+  seq: 3
+  tags:
+    - Chat Completions
+
+http:
+  method: GET
+  url: "{{baseUrl}}/copilot/chat/threads/:threadId"
+  params:
+    - name: threadId
+      value: thread-abc-123
+      type: path
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+examples:
+  - name: Default
+    request:
+      url: "{{baseUrl}}/copilot/chat/threads/:threadId"
+      method: GET
+      params:
+        - name: threadId
+          value: ""
+          type: path
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "id": "thread-abc-123",
+            "displayName": "Travel Policy Questions",
+            "createdDateTime": "2025-09-10T16:00:00Z",
+            "lastUpdatedDateTime": "2025-09-10T16:45:00Z"
+          }
+  - name: Default
+    request:
+      url: "{{baseUrl}}/copilot/chat/threads/:threadId"
+      method: GET
+      params:
+        - name: threadId
+          value: ""
+          type: path
+    response:
+      status: 404
+      statusText: Not Found
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "error": {
+              "code": "NotFound",
+              "message": "The requested resource could not be found.",
+              "innerError": {
+                "requestId": "req-err-404-001",
+                "date": "2025-09-10T12:00:00Z"
+              }
+            }
+          }

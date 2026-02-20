@@ -1,0 +1,4 @@
+name: Sandbox
+variables:
+  - name: baseUrl
+    value: http://localhost:8080/rest/microsoft-365-copilot-apis/1.0.0

@@ -1,0 +1,259 @@
+info:
+  name: Get AI-generated meeting insights
+  type: http
+  seq: 1
+  tags:
+    - Meeting Insights
+
+http:
+  method: GET
+  url: "{{baseUrl}}/copilot/meetings/:meetingId/insights"
+  params:
+    - name: meetingId
+      value: meeting-xyz-789
+      type: path
+      description: |
+        The unique identifier of the Teams meeting (online meeting ID or join URL encoded).
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+examples:
+  - name: Default
+    request:
+      url: "{{baseUrl}}/copilot/meetings/:meetingId/insights"
+      method: GET
+      params:
+        - name: meetingId
+          value: ""
+          type: path
+          description: |
+            The unique identifier of the Teams meeting (online meeting ID or join URL encoded).
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "meetingId": "meeting-xyz-789",
+            "subject": "Q3 Product Roadmap Review",
+            "startDateTime": "2025-09-10T14:00:00Z",
+            "endDateTime": "2025-09-10T15:00:00Z",
+            "summary": "The team reviewed the Q3 product roadmap, confirmed the launch date for the new dashboard feature, and discussed resource allocation for the mobile app initiative.",
+            "topics": [
+              {
+                "id": "topic-001",
+                "title": "Dashboard Feature Launch",
+                "description": "Discussion of the new analytics dashboard feature timeline and QA readiness.",
+                "timestamp": "00:05:30"
+              },
+              {
+                "id": "topic-002",
+                "title": "Mobile App Resource Allocation",
+                "description": "Review of staffing needs for the mobile app initiative in Q4.",
+                "timestamp": "00:25:00"
+              }
+            ],
+            "actionItems": [
+              {
+                "id": "action-001",
+                "description": "Finalize QA test plan for the dashboard feature by end of week.",
+                "assignedTo": {
+                  "userId": "user-abc-123",
+                  "displayName": "Jane Doe"
+                },
+                "dueDate": "2025-09-14",
+                "status": "pending"
+              },
+              {
+                "id": "action-002",
+                "description": "Draft resource request for two additional mobile developers.",
+                "assignedTo": {
+                  "userId": "user-def-456",
+                  "displayName": "John Smith"
+                },
+                "dueDate": "2025-09-17",
+                "status": "pending"
+              }
+            ],
+            "decisions": [
+              {
+                "id": "decision-001",
+                "description": "Dashboard feature launch confirmed for October 1, 2025.",
+                "madeBy": {
+                  "userId": "user-ghi-789",
+                  "displayName": "Maria Garcia"
+                }
+              }
+            ],
+            "participants": [
+              {
+                "userId": "user-ghi-789",
+                "displayName": "Maria Garcia",
+                "role": "organizer"
+              },
+              {
+                "userId": "user-abc-123",
+                "displayName": "Jane Doe",
+                "role": "presenter"
+              },
+              {
+                "userId": "user-def-456",
+                "displayName": "John Smith",
+                "role": "attendee"
+              }
+            ]
+          }
+  - name: Default
+    request:
+      url: "{{baseUrl}}/copilot/meetings/:meetingId/insights"
+      method: GET
+      params:
+        - name: meetingId
+          value: ""
+          type: path
+          description: |
+            The unique identifier of the Teams meeting (online meeting ID or join URL encoded).
+    response:
+      status: 401
+      statusText: Unauthorized
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "error": {
+              "code": "Unauthorized",
+              "message": "Authentication token is missing, expired, or invalid.",
+              "innerError": {
+                "requestId": "req-err-401-001",
+                "date": "2025-09-10T12:00:00Z"
+              }
+            }
+          }
+  - name: Default
+    request:
+      url: "{{baseUrl}}/copilot/meetings/:meetingId/insights"
+      method: GET
+      params:
+        - name: meetingId
+          value: ""
+          type: path
+          description: |
+            The unique identifier of the Teams meeting (online meeting ID or join URL encoded).
+    response:
+      status: 403
+      statusText: Forbidden
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "error": {
+              "code": "Forbidden",
+              "message": "Insufficient privileges to complete the operation. Verify the required permissions are granted.",
+              "innerError": {
+                "requestId": "req-err-403-001",
+                "date": "2025-09-10T12:00:00Z"
+              }
+            }
+          }
+  - name: Default
+    request:
+      url: "{{baseUrl}}/copilot/meetings/:meetingId/insights"
+      method: GET
+      params:
+        - name: meetingId
+          value: ""
+          type: path
+          description: |
+            The unique identifier of the Teams meeting (online meeting ID or join URL encoded).
+    response:
+      status: 404
+      statusText: Not Found
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "error": {
+              "code": "NotFound",
+              "message": "The requested resource could not be found.",
+              "innerError": {
+                "requestId": "req-err-404-001",
+                "date": "2025-09-10T12:00:00Z"
+              }
+            }
+          }
+  - name: Default
+    request:
+      url: "{{baseUrl}}/copilot/meetings/:meetingId/insights"
+      method: GET
+      params:
+        - name: meetingId
+          value: ""
+          type: path
+          description: |
+            The unique identifier of the Teams meeting (online meeting ID or join URL encoded).
+    response:
+      status: 429
+      statusText: Too Many Requests
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "error": {
+              "code": "TooManyRequests",
+              "message": "Rate limit exceeded. Please retry after the number of seconds specified in the Retry-After header.",
+              "innerError": {
+                "requestId": "req-err-429-001",
+                "date": "2025-09-10T12:00:00Z"
+              }
+            }
+          }
+  - name: Default
+    request:
+      url: "{{baseUrl}}/copilot/meetings/:meetingId/insights"
+      method: GET
+      params:
+        - name: meetingId
+          value: ""
+          type: path
+          description: |
+            The unique identifier of the Teams meeting (online meeting ID or join URL encoded).
+    response:
+      status: 500
+      statusText: Internal Server Error
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "error": {
+              "code": "InternalServerError",
+              "message": "An unexpected error occurred while processing the request. Please try again later.",
+              "innerError": {
+                "requestId": "req-err-500-001",
+                "date": "2025-09-10T12:00:00Z"
+              }
+            }
+          }

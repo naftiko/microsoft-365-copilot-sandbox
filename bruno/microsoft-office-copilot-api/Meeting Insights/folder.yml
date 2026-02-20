@@ -1,0 +1,7 @@
+info:
+  name: Meeting Insights
+  type: folder
+  seq: 1
+
+request:
+  auth: inherit

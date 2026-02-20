@@ -1,0 +1,379 @@
+info:
+  name: List apps and agents
+  type: http
+  seq: 1
+  tags:
+    - Packages
+
+http:
+  method: GET
+  url: "{{baseUrl}}/copilot/packages"
+  params:
+    - name: $top
+      value: "25"
+      type: query
+      description: Maximum number of results to return.
+    - name: $skip
+      value: "0"
+      type: query
+      description: Number of results to skip for pagination.
+    - name: $filter
+      value: ""
+      type: query
+      description: OData filter expression.
+      disabled: true
+    - name: $orderby
+      value: ""
+      type: query
+      description: OData order-by expression.
+      disabled: true
+    - name: type
+      value: app
+      type: query
+      description: Filter by package type.
+      disabled: true
+    - name: type
+      value: agent
+      type: query
+      description: Filter by package type.
+      disabled: true
+    - name: type
+      value: all
+      type: query
+      description: Filter by package type.
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+examples:
+  - name: Default
+    request:
+      url: "{{baseUrl}}/copilot/packages"
+      method: GET
+      params:
+        - name: $top
+          value: "25"
+          type: query
+          description: Maximum number of results to return.
+        - name: $skip
+          value: "0"
+          type: query
+          description: Number of results to skip for pagination.
+        - name: $filter
+          value: ""
+          type: query
+          description: OData filter expression.
+          disabled: true
+        - name: $orderby
+          value: ""
+          type: query
+          description: OData order-by expression.
+          disabled: true
+        - name: type
+          value: app
+          type: query
+          description: Filter by package type.
+          disabled: true
+        - name: type
+          value: agent
+          type: query
+          description: Filter by package type.
+          disabled: true
+        - name: type
+          value: all
+          type: query
+          description: Filter by package type.
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "value": [
+              {
+                "id": "pkg-001-abc",
+                "displayName": "Contoso Sales Assistant",
+                "description": "AI agent that helps sales teams draft proposals and analyze pipeline data.",
+                "type": "agent",
+                "publisher": "Contoso IT",
+                "version": "2.1.0",
+                "status": "active",
+                "createdDateTime": "2025-06-01T09:00:00Z",
+                "lastModifiedDateTime": "2025-09-01T14:30:00Z",
+                "permissions": [
+                  {
+                    "name": "Sites.Read.All",
+                    "type": "delegated"
+                  },
+                  {
+                    "name": "Mail.Read",
+                    "type": "delegated"
+                  }
+                ],
+                "deployedTo": [
+                  {
+                    "id": "group-sales-team",
+                    "displayName": "Sales Team",
+                    "type": "group"
+                  }
+                ]
+              },
+              {
+                "id": "pkg-002-def",
+                "displayName": "IT Helpdesk Bot",
+                "description": "Application for automated IT support ticket triage and resolution.",
+                "type": "app",
+                "publisher": "Contoso IT",
+                "version": "1.5.3",
+                "status": "active",
+                "createdDateTime": "2025-03-15T10:00:00Z",
+                "lastModifiedDateTime": "2025-08-20T11:00:00Z",
+                "permissions": [
+                  {
+                    "name": "User.Read.All",
+                    "type": "application"
+                  }
+                ],
+                "deployedTo": [
+                  {
+                    "id": "org-contoso",
+                    "displayName": "Contoso",
+                    "type": "organization"
+                  }
+                ]
+              }
+            ],
+            "@odata.count": 2
+          }
+  - name: Default
+    request:
+      url: "{{baseUrl}}/copilot/packages"
+      method: GET
+      params:
+        - name: $top
+          value: "25"
+          type: query
+          description: Maximum number of results to return.
+        - name: $skip
+          value: "0"
+          type: query
+          description: Number of results to skip for pagination.
+        - name: $filter
+          value: ""
+          type: query
+          description: OData filter expression.
+          disabled: true
+        - name: $orderby
+          value: ""
+          type: query
+          description: OData order-by expression.
+          disabled: true
+        - name: type
+          value: app
+          type: query
+          description: Filter by package type.
+          disabled: true
+        - name: type
+          value: agent
+          type: query
+          description: Filter by package type.
+          disabled: true
+        - name: type
+          value: all
+          type: query
+          description: Filter by package type.
+    response:
+      status: 401
+      statusText: Unauthorized
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "error": {
+              "code": "Unauthorized",
+              "message": "Authentication token is missing, expired, or invalid.",
+              "innerError": {
+                "requestId": "req-err-401-001",
+                "date": "2025-09-10T12:00:00Z"
+              }
+            }
+          }
+  - name: Default
+    request:
+      url: "{{baseUrl}}/copilot/packages"
+      method: GET
+      params:
+        - name: $top
+          value: "25"
+          type: query
+          description: Maximum number of results to return.
+        - name: $skip
+          value: "0"
+          type: query
+          description: Number of results to skip for pagination.
+        - name: $filter
+          value: ""
+          type: query
+          description: OData filter expression.
+          disabled: true
+        - name: $orderby
+          value: ""
+          type: query
+          description: OData order-by expression.
+          disabled: true
+        - name: type
+          value: app
+          type: query
+          description: Filter by package type.
+          disabled: true
+        - name: type
+          value: agent
+          type: query
+          description: Filter by package type.
+          disabled: true
+        - name: type
+          value: all
+          type: query
+          description: Filter by package type.
+    response:
+      status: 403
+      statusText: Forbidden
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "error": {
+              "code": "Forbidden",
+              "message": "Insufficient privileges to complete the operation. Verify the required permissions are granted.",
+              "innerError": {
+                "requestId": "req-err-403-001",
+                "date": "2025-09-10T12:00:00Z"
+              }
+            }
+          }
+  - name: Default
+    request:
+      url: "{{baseUrl}}/copilot/packages"
+      method: GET
+      params:
+        - name: $top
+          value: "25"
+          type: query
+          description: Maximum number of results to return.
+        - name: $skip
+          value: "0"
+          type: query
+          description: Number of results to skip for pagination.
+        - name: $filter
+          value: ""
+          type: query
+          description: OData filter expression.
+          disabled: true
+        - name: $orderby
+          value: ""
+          type: query
+          description: OData order-by expression.
+          disabled: true
+        - name: type
+          value: app
+          type: query
+          description: Filter by package type.
+          disabled: true
+        - name: type
+          value: agent
+          type: query
+          description: Filter by package type.
+          disabled: true
+        - name: type
+          value: all
+          type: query
+          description: Filter by package type.
+    response:
+      status: 429
+      statusText: Too Many Requests
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "error": {
+              "code": "TooManyRequests",
+              "message": "Rate limit exceeded. Please retry after the number of seconds specified in the Retry-After header.",
+              "innerError": {
+                "requestId": "req-err-429-001",
+                "date": "2025-09-10T12:00:00Z"
+              }
+            }
+          }
+  - name: Default
+    request:
+      url: "{{baseUrl}}/copilot/packages"
+      method: GET
+      params:
+        - name: $top
+          value: "25"
+          type: query
+          description: Maximum number of results to return.
+        - name: $skip
+          value: "0"
+          type: query
+          description: Number of results to skip for pagination.
+        - name: $filter
+          value: ""
+          type: query
+          description: OData filter expression.
+          disabled: true
+        - name: $orderby
+          value: ""
+          type: query
+          description: OData order-by expression.
+          disabled: true
+        - name: type
+          value: app
+          type: query
+          description: Filter by package type.
+          disabled: true
+        - name: type
+          value: agent
+          type: query
+          description: Filter by package type.
+          disabled: true
+        - name: type
+          value: all
+          type: query
+          description: Filter by package type.
+    response:
+      status: 500
+      statusText: Internal Server Error
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "error": {
+              "code": "InternalServerError",
+              "message": "An unexpected error occurred while processing the request. Please try again later.",
+              "innerError": {
+                "requestId": "req-err-500-001",
+                "date": "2025-09-10T12:00:00Z"
+              }
+            }
+          }

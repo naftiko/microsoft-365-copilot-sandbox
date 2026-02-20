@@ -1,0 +1,299 @@
+info:
+  name: Retrieve relevant content from Microsoft 365
+  type: http
+  seq: 1
+  tags:
+    - Content Retrieval
+
+http:
+  method: POST
+  url: "{{baseUrl}}/copilot/retrieval/query"
+  body:
+    type: json
+    data: |-
+      {
+        "query": "",
+        "contentSources": [
+          {
+            "type": "sharePointSite",
+            "id": ""
+          }
+        ],
+        "maxResults": 0,
+        "options": {
+          "respectSensitivityLabels": false,
+          "includeSnippets": false
+        }
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+examples:
+  - name: Default
+    request:
+      url: "{{baseUrl}}/copilot/retrieval/query"
+      method: POST
+      body:
+        type: json
+        data: |-
+          {
+            "query": "",
+            "contentSources": [
+              {
+                "type": "sharePointSite",
+                "id": ""
+              }
+            ],
+            "maxResults": 0,
+            "options": {
+              "respectSensitivityLabels": false,
+              "includeSnippets": false
+            }
+          }
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "value": [
+              {
+                "id": "ret-result-001",
+                "relevanceScore": 0.94,
+                "content": {
+                  "snippet": "The company remote work policy allows employees to work from home up to three days per week with manager approval.",
+                  "sensitivityLabel": "Internal"
+                },
+                "resource": {
+                  "type": "driveItem",
+                  "id": "01ABCDEF23456789",
+                  "name": "Remote-Work-Policy-2025.docx",
+                  "webUrl": "https://contoso.sharepoint.com/sites/hr/Shared%20Documents/Remote-Work-Policy-2025.docx"
+                }
+              },
+              {
+                "id": "ret-result-002",
+                "relevanceScore": 0.87,
+                "content": {
+                  "snippet": "Eligible employees must complete the remote work agreement form and submit it to HR before beginning any remote arrangement.",
+                  "sensitivityLabel": "Internal"
+                },
+                "resource": {
+                  "type": "driveItem",
+                  "id": "01ABCDEF98765432",
+                  "name": "HR-Onboarding-Guide.docx",
+                  "webUrl": "https://contoso.sharepoint.com/sites/hr/Shared%20Documents/HR-Onboarding-Guide.docx"
+                }
+              }
+            ],
+            "@odata.count": 2
+          }
+  - name: Default
+    request:
+      url: "{{baseUrl}}/copilot/retrieval/query"
+      method: POST
+      body:
+        type: json
+        data: |-
+          {
+            "query": "",
+            "contentSources": [
+              {
+                "type": "sharePointSite",
+                "id": ""
+              }
+            ],
+            "maxResults": 0,
+            "options": {
+              "respectSensitivityLabels": false,
+              "includeSnippets": false
+            }
+          }
+    response:
+      status: 400
+      statusText: Bad Request
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "error": {
+              "code": "BadRequest",
+              "message": "The request is invalid. Check the request body for missing or malformed fields.",
+              "innerError": {
+                "requestId": "req-err-400-001",
+                "date": "2025-09-10T12:00:00Z"
+              }
+            }
+          }
+  - name: Default
+    request:
+      url: "{{baseUrl}}/copilot/retrieval/query"
+      method: POST
+      body:
+        type: json
+        data: |-
+          {
+            "query": "",
+            "contentSources": [
+              {
+                "type": "sharePointSite",
+                "id": ""
+              }
+            ],
+            "maxResults": 0,
+            "options": {
+              "respectSensitivityLabels": false,
+              "includeSnippets": false
+            }
+          }
+    response:
+      status: 401
+      statusText: Unauthorized
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "error": {
+              "code": "Unauthorized",
+              "message": "Authentication token is missing, expired, or invalid.",
+              "innerError": {
+                "requestId": "req-err-401-001",
+                "date": "2025-09-10T12:00:00Z"
+              }
+            }
+          }
+  - name: Default
+    request:
+      url: "{{baseUrl}}/copilot/retrieval/query"
+      method: POST
+      body:
+        type: json
+        data: |-
+          {
+            "query": "",
+            "contentSources": [
+              {
+                "type": "sharePointSite",
+                "id": ""
+              }
+            ],
+            "maxResults": 0,
+            "options": {
+              "respectSensitivityLabels": false,
+              "includeSnippets": false
+            }
+          }
+    response:
+      status: 403
+      statusText: Forbidden
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "error": {
+              "code": "Forbidden",
+              "message": "Insufficient privileges to complete the operation. Verify the required permissions are granted.",
+              "innerError": {
+                "requestId": "req-err-403-001",
+                "date": "2025-09-10T12:00:00Z"
+              }
+            }
+          }
+  - name: Default
+    request:
+      url: "{{baseUrl}}/copilot/retrieval/query"
+      method: POST
+      body:
+        type: json
+        data: |-
+          {
+            "query": "",
+            "contentSources": [
+              {
+                "type": "sharePointSite",
+                "id": ""
+              }
+            ],
+            "maxResults": 0,
+            "options": {
+              "respectSensitivityLabels": false,
+              "includeSnippets": false
+            }
+          }
+    response:
+      status: 429
+      statusText: Too Many Requests
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "error": {
+              "code": "TooManyRequests",
+              "message": "Rate limit exceeded. Please retry after the number of seconds specified in the Retry-After header.",
+              "innerError": {
+                "requestId": "req-err-429-001",
+                "date": "2025-09-10T12:00:00Z"
+              }
+            }
+          }
+  - name: Default
+    request:
+      url: "{{baseUrl}}/copilot/retrieval/query"
+      method: POST
+      body:
+        type: json
+        data: |-
+          {
+            "query": "",
+            "contentSources": [
+              {
+                "type": "sharePointSite",
+                "id": ""
+              }
+            ],
+            "maxResults": 0,
+            "options": {
+              "respectSensitivityLabels": false,
+              "includeSnippets": false
+            }
+          }
+    response:
+      status: 500
+      statusText: Internal Server Error
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "error": {
+              "code": "InternalServerError",
+              "message": "An unexpected error occurred while processing the request. Please try again later.",
+              "innerError": {
+                "requestId": "req-err-500-001",
+                "date": "2025-09-10T12:00:00Z"
+              }
+            }
+          }

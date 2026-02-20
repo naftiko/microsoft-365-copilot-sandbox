@@ -1,0 +1,4 @@
+name: Microsoft Graph v1.0 (stable)
+variables:
+  - name: baseUrl
+    value: https://graph.microsoft.com/v1.0

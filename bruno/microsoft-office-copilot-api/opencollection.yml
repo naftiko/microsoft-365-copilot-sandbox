@@ -1,0 +1,31 @@
+opencollection: 1.0.0
+
+info:
+  name: Microsoft 365 Copilot APIs
+
+request:
+  auth:
+    type: oauth2
+    flow: authorization_code
+    authorizationUrl: https://login.microsoftonline.com/common/oauth2/v2.0/authorize
+    accessTokenUrl: https://login.microsoftonline.com/common/oauth2/v2.0/token
+    refreshTokenUrl: "{{oauth_refresh_url}}"
+    callbackUrl: "{{oauth_callback_url}}"
+    credentials:
+      clientId: "{{oauth_client_id}}"
+      clientSecret: "{{oauth_client_secret}}"
+      placement: header
+    scope: Copilot.Retrieval.Read Copilot.Search.Read Copilot.Interaction.Read Copilot.Interaction.ReadWrite Copilot.ChangeNotification.ReadWrite Copilot.MeetingInsights.Read Copilot.Chat.ReadWrite Reports.Read.All Copilot.Package.ReadWrite.All
+    state: "{{oauth_state}}"
+    tokenConfig:
+      placement:
+        header: Bearer
+    settings:
+      autoFetchToken: false
+      autoRefreshToken: true
+bundled: false
+extensions:
+  bruno:
+    ignore:
+      - node_modules
+      - .git

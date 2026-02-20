@@ -1,0 +1,65 @@
+info:
+  name: Delete a subscription
+  type: http
+  seq: 5
+  tags:
+    - Change Notifications
+
+http:
+  method: DELETE
+  url: "{{baseUrl}}/copilot/subscriptions/:subscriptionId"
+  params:
+    - name: subscriptionId
+      value: sub-001-abc
+      type: path
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+examples:
+  - name: 204 Response
+    description: Subscription deleted successfully.
+    request:
+      url: "{{baseUrl}}/copilot/subscriptions/:subscriptionId"
+      method: DELETE
+      params:
+        - name: subscriptionId
+          value: ""
+          type: path
+    response:
+      status: 204
+      statusText: No Content
+      body:
+        type: text
+        data: ""
+  - name: Default
+    request:
+      url: "{{baseUrl}}/copilot/subscriptions/:subscriptionId"
+      method: DELETE
+      params:
+        - name: subscriptionId
+          value: ""
+          type: path
+    response:
+      status: 404
+      statusText: Not Found
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "error": {
+              "code": "NotFound",
+              "message": "The requested resource could not be found.",
+              "innerError": {
+                "requestId": "req-err-404-001",
+                "date": "2025-09-10T12:00:00Z"
+              }
+            }
+          }

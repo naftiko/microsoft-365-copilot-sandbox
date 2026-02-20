@@ -1,0 +1,308 @@
+info:
+  name: Search OneDrive content using natural language
+  type: http
+  seq: 1
+  tags:
+    - Content Search
+
+http:
+  method: POST
+  url: "{{baseUrl}}/copilot/search/query"
+  body:
+    type: json
+    data: |-
+      {
+        "queryString": "",
+        "entityTypes": [
+          "driveItem"
+        ],
+        "from": 0,
+        "size": 0,
+        "sortProperties": [
+          {
+            "name": "",
+            "isDescending": false
+          }
+        ]
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+examples:
+  - name: Default
+    request:
+      url: "{{baseUrl}}/copilot/search/query"
+      method: POST
+      body:
+        type: json
+        data: |-
+          {
+            "queryString": "",
+            "entityTypes": [
+              "driveItem"
+            ],
+            "from": 0,
+            "size": 0,
+            "sortProperties": [
+              {
+                "name": "",
+                "isDescending": false
+              }
+            ]
+          }
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "value": [
+              {
+                "hitId": "hit-001",
+                "rank": 1,
+                "summary": "Q3 2025 budget presentation covering departmental allocations and projected spending through year end.",
+                "resource": {
+                  "@odata.type": "#microsoft.graph.driveItem",
+                  "id": "01XYZABC12345678",
+                  "name": "Q3-2025-Budget-Presentation.pptx",
+                  "webUrl": "https://contoso-my.sharepoint.com/personal/jdoe/Documents/Q3-2025-Budget-Presentation.pptx",
+                  "lastModifiedDateTime": "2025-08-15T14:30:00Z",
+                  "createdBy": {
+                    "user": {
+                      "displayName": "Jane Doe",
+                      "id": "user-abc-123"
+                    }
+                  }
+                }
+              },
+              {
+                "hitId": "hit-002",
+                "rank": 2,
+                "summary": "Annual budget planning template with quarterly breakdown and variance tracking worksheets.",
+                "resource": {
+                  "@odata.type": "#microsoft.graph.driveItem",
+                  "id": "01XYZABC87654321",
+                  "name": "Annual-Budget-Template.xlsx",
+                  "webUrl": "https://contoso-my.sharepoint.com/personal/jsmith/Documents/Annual-Budget-Template.xlsx",
+                  "lastModifiedDateTime": "2025-07-01T09:00:00Z",
+                  "createdBy": {
+                    "user": {
+                      "displayName": "John Smith",
+                      "id": "user-def-456"
+                    }
+                  }
+                }
+              }
+            ],
+            "@odata.count": 2,
+            "moreResultsAvailable": true
+          }
+  - name: Default
+    request:
+      url: "{{baseUrl}}/copilot/search/query"
+      method: POST
+      body:
+        type: json
+        data: |-
+          {
+            "queryString": "",
+            "entityTypes": [
+              "driveItem"
+            ],
+            "from": 0,
+            "size": 0,
+            "sortProperties": [
+              {
+                "name": "",
+                "isDescending": false
+              }
+            ]
+          }
+    response:
+      status: 400
+      statusText: Bad Request
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "error": {
+              "code": "BadRequest",
+              "message": "The request is invalid. Check the request body for missing or malformed fields.",
+              "innerError": {
+                "requestId": "req-err-400-001",
+                "date": "2025-09-10T12:00:00Z"
+              }
+            }
+          }
+  - name: Default
+    request:
+      url: "{{baseUrl}}/copilot/search/query"
+      method: POST
+      body:
+        type: json
+        data: |-
+          {
+            "queryString": "",
+            "entityTypes": [
+              "driveItem"
+            ],
+            "from": 0,
+            "size": 0,
+            "sortProperties": [
+              {
+                "name": "",
+                "isDescending": false
+              }
+            ]
+          }
+    response:
+      status: 401
+      statusText: Unauthorized
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "error": {
+              "code": "Unauthorized",
+              "message": "Authentication token is missing, expired, or invalid.",
+              "innerError": {
+                "requestId": "req-err-401-001",
+                "date": "2025-09-10T12:00:00Z"
+              }
+            }
+          }
+  - name: Default
+    request:
+      url: "{{baseUrl}}/copilot/search/query"
+      method: POST
+      body:
+        type: json
+        data: |-
+          {
+            "queryString": "",
+            "entityTypes": [
+              "driveItem"
+            ],
+            "from": 0,
+            "size": 0,
+            "sortProperties": [
+              {
+                "name": "",
+                "isDescending": false
+              }
+            ]
+          }
+    response:
+      status: 403
+      statusText: Forbidden
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "error": {
+              "code": "Forbidden",
+              "message": "Insufficient privileges to complete the operation. Verify the required permissions are granted.",
+              "innerError": {
+                "requestId": "req-err-403-001",
+                "date": "2025-09-10T12:00:00Z"
+              }
+            }
+          }
+  - name: Default
+    request:
+      url: "{{baseUrl}}/copilot/search/query"
+      method: POST
+      body:
+        type: json
+        data: |-
+          {
+            "queryString": "",
+            "entityTypes": [
+              "driveItem"
+            ],
+            "from": 0,
+            "size": 0,
+            "sortProperties": [
+              {
+                "name": "",
+                "isDescending": false
+              }
+            ]
+          }
+    response:
+      status: 429
+      statusText: Too Many Requests
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "error": {
+              "code": "TooManyRequests",
+              "message": "Rate limit exceeded. Please retry after the number of seconds specified in the Retry-After header.",
+              "innerError": {
+                "requestId": "req-err-429-001",
+                "date": "2025-09-10T12:00:00Z"
+              }
+            }
+          }
+  - name: Default
+    request:
+      url: "{{baseUrl}}/copilot/search/query"
+      method: POST
+      body:
+        type: json
+        data: |-
+          {
+            "queryString": "",
+            "entityTypes": [
+              "driveItem"
+            ],
+            "from": 0,
+            "size": 0,
+            "sortProperties": [
+              {
+                "name": "",
+                "isDescending": false
+              }
+            ]
+          }
+    response:
+      status: 500
+      statusText: Internal Server Error
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "error": {
+              "code": "InternalServerError",
+              "message": "An unexpected error occurred while processing the request. Please try again later.",
+              "innerError": {
+                "requestId": "req-err-500-001",
+                "date": "2025-09-10T12:00:00Z"
+              }
+            }
+          }

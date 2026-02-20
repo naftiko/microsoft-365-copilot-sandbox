@@ -1,0 +1,7 @@
+info:
+  name: Content Search
+  type: folder
+  seq: 1
+
+request:
+  auth: inherit

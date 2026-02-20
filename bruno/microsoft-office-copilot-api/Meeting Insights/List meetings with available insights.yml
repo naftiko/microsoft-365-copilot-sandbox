@@ -1,0 +1,273 @@
+info:
+  name: List meetings with available insights
+  type: http
+  seq: 2
+  tags:
+    - Meeting Insights
+
+http:
+  method: GET
+  url: "{{baseUrl}}/copilot/meetings?$top=25&$skip=0&$filter=name&startDateTime=2026-01-01&endDateTime=2026-01-01"
+  params:
+    - name: $top
+      value: "25"
+      type: query
+      description: Maximum number of results to return.
+    - name: $skip
+      value: "0"
+      type: query
+      description: Number of results to skip for pagination.
+    - name: $filter
+      value: name
+      type: query
+      description: OData filter expression.
+    - name: startDateTime
+      value: 2026-01-01
+      type: query
+    - name: endDateTime
+      value: 2026-01-01
+      type: query
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+examples:
+  - name: Default
+    request:
+      url: "{{baseUrl}}/copilot/meetings"
+      method: GET
+      params:
+        - name: $top
+          value: "25"
+          type: query
+          description: Maximum number of results to return.
+        - name: $skip
+          value: "0"
+          type: query
+          description: Number of results to skip for pagination.
+        - name: $filter
+          value: ""
+          type: query
+          description: OData filter expression.
+          disabled: true
+        - name: startDateTime
+          value: ""
+          type: query
+          disabled: true
+        - name: endDateTime
+          value: ""
+          type: query
+          disabled: true
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "value": [
+              {
+                "meetingId": "meeting-xyz-789",
+                "subject": "Q3 Product Roadmap Review",
+                "startDateTime": "2025-09-10T14:00:00Z",
+                "endDateTime": "2025-09-10T15:00:00Z",
+                "insightsAvailable": true
+              },
+              {
+                "meetingId": "meeting-uvw-456",
+                "subject": "Weekly Engineering Standup",
+                "startDateTime": "2025-09-09T09:00:00Z",
+                "endDateTime": "2025-09-09T09:30:00Z",
+                "insightsAvailable": true
+              }
+            ],
+            "@odata.count": 2,
+            "@odata.nextLink": "https://graph.microsoft.com/v1.0/copilot/meetings?$skip=2&$top=25"
+          }
+  - name: Default
+    request:
+      url: "{{baseUrl}}/copilot/meetings"
+      method: GET
+      params:
+        - name: $top
+          value: "25"
+          type: query
+          description: Maximum number of results to return.
+        - name: $skip
+          value: "0"
+          type: query
+          description: Number of results to skip for pagination.
+        - name: $filter
+          value: ""
+          type: query
+          description: OData filter expression.
+          disabled: true
+        - name: startDateTime
+          value: ""
+          type: query
+          disabled: true
+        - name: endDateTime
+          value: ""
+          type: query
+          disabled: true
+    response:
+      status: 401
+      statusText: Unauthorized
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "error": {
+              "code": "Unauthorized",
+              "message": "Authentication token is missing, expired, or invalid.",
+              "innerError": {
+                "requestId": "req-err-401-001",
+                "date": "2025-09-10T12:00:00Z"
+              }
+            }
+          }
+  - name: Default
+    request:
+      url: "{{baseUrl}}/copilot/meetings"
+      method: GET
+      params:
+        - name: $top
+          value: "25"
+          type: query
+          description: Maximum number of results to return.
+        - name: $skip
+          value: "0"
+          type: query
+          description: Number of results to skip for pagination.
+        - name: $filter
+          value: ""
+          type: query
+          description: OData filter expression.
+          disabled: true
+        - name: startDateTime
+          value: ""
+          type: query
+          disabled: true
+        - name: endDateTime
+          value: ""
+          type: query
+          disabled: true
+    response:
+      status: 403
+      statusText: Forbidden
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "error": {
+              "code": "Forbidden",
+              "message": "Insufficient privileges to complete the operation. Verify the required permissions are granted.",
+              "innerError": {
+                "requestId": "req-err-403-001",
+                "date": "2025-09-10T12:00:00Z"
+              }
+            }
+          }
+  - name: Default
+    request:
+      url: "{{baseUrl}}/copilot/meetings"
+      method: GET
+      params:
+        - name: $top
+          value: "25"
+          type: query
+          description: Maximum number of results to return.
+        - name: $skip
+          value: "0"
+          type: query
+          description: Number of results to skip for pagination.
+        - name: $filter
+          value: ""
+          type: query
+          description: OData filter expression.
+          disabled: true
+        - name: startDateTime
+          value: ""
+          type: query
+          disabled: true
+        - name: endDateTime
+          value: ""
+          type: query
+          disabled: true
+    response:
+      status: 429
+      statusText: Too Many Requests
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "error": {
+              "code": "TooManyRequests",
+              "message": "Rate limit exceeded. Please retry after the number of seconds specified in the Retry-After header.",
+              "innerError": {
+                "requestId": "req-err-429-001",
+                "date": "2025-09-10T12:00:00Z"
+              }
+            }
+          }
+  - name: Default
+    request:
+      url: "{{baseUrl}}/copilot/meetings"
+      method: GET
+      params:
+        - name: $top
+          value: "25"
+          type: query
+          description: Maximum number of results to return.
+        - name: $skip
+          value: "0"
+          type: query
+          description: Number of results to skip for pagination.
+        - name: $filter
+          value: ""
+          type: query
+          description: OData filter expression.
+          disabled: true
+        - name: startDateTime
+          value: ""
+          type: query
+          disabled: true
+        - name: endDateTime
+          value: ""
+          type: query
+          disabled: true
+    response:
+      status: 500
+      statusText: Internal Server Error
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "error": {
+              "code": "InternalServerError",
+              "message": "An unexpected error occurred while processing the request. Please try again later.",
+              "innerError": {
+                "requestId": "req-err-500-001",
+                "date": "2025-09-10T12:00:00Z"
+              }
+            }
+          }

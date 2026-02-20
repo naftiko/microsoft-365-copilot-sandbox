@@ -1,0 +1,65 @@
+info:
+  name: Remove a package
+  type: http
+  seq: 4
+  tags:
+    - Packages
+
+http:
+  method: DELETE
+  url: "{{baseUrl}}/copilot/packages/:packageId"
+  params:
+    - name: packageId
+      value: "123"
+      type: path
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+examples:
+  - name: 204 Response
+    description: Package removed successfully.
+    request:
+      url: "{{baseUrl}}/copilot/packages/:packageId"
+      method: DELETE
+      params:
+        - name: packageId
+          value: ""
+          type: path
+    response:
+      status: 204
+      statusText: No Content
+      body:
+        type: text
+        data: ""
+  - name: Default
+    request:
+      url: "{{baseUrl}}/copilot/packages/:packageId"
+      method: DELETE
+      params:
+        - name: packageId
+          value: ""
+          type: path
+    response:
+      status: 404
+      statusText: Not Found
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "error": {
+              "code": "NotFound",
+              "message": "The requested resource could not be found.",
+              "innerError": {
+                "requestId": "req-err-404-001",
+                "date": "2025-09-10T12:00:00Z"
+              }
+            }
+          }

@@ -1,0 +1,108 @@
+specificationVersion: '0.19'
+
+aid: microsoft-365-copilot-sandbox
+type: Sandbox
+visibility: Public
+
+name: microsoft-365-copilot-api-sandbox
+description: >-
+  This is a Microsoft 365 Copilot sandbox that uses OpenAPI, Microcks, Bruno, and
+  Backstage to provide a 3rd-party REST API and MCP sandbox for Microsoft 365 Copilot.
+
+tags:
+  - Copilots
+  - Microsoft
+  - Office
+  - 365
+
+image: https://naftiko.s3.us-east-1.amazonaws.com/naftiko-logo-blue-icon.png
+
+created: '2026-02-19'
+modified: '2026-02-19'
+
+url: https://github.com/naftiko/microsoft-365-copilot-sandbox/blob/main/README.md
+
+apis:
+
+    - aid: microsoft-365-copilot:microsoft-365-copilot-api
+      name: Microsooft 365 Copilot API
+      description: >-
+        Working with Microsoft 365 Copilot, providing a sandbox for working with specific interaction scenarios as part of automation.
+      tags:
+        - Copilots
+        - Microsoft
+        - Office
+        - 365
+      properties:
+
+        - type: OpenApi
+          url: openapi/microsoft-copilot-api.yaml
+
+        - type: MockRestServer
+          url: http://localhost:8080/rest/microsoft-365-copilot-apis/1.0.0
+        - type: MockMCPServer
+          url: http://localhost:8080/mcp/microsoft-365-copilot-apis/1.0.0/sse
+
+        - type: OpenCollection
+          url: bruno/microsoft-office-copilot-api/opencollection.yml
+
+common:
+
+  - type: GitHubHttpUrl
+    url: https://github.com/naftiko/microsoft-365-copilot-sandbox
+
+  - type: GitHubSshUrl
+    url: git@github.com:naftiko/microsoft-365-copilot-sandbox.git
+
+  - type: GitHubIssues
+    url: https://github.com/naftiko/microsoft-365-copilot-sandbox/issues
+
+  - type: GitHubDiscussions
+    url: https://github.com/orgs/naftiko/discussions
+
+  - type: Standards
+    data:
+
+      - name: APIs.json
+        description: This uses the APIs.json
+        docUrl: http://apisjson.org/
+
+      - name: OpenAPI
+        description: This uses OpenAPI to define access to all HTTP APIs.
+        docUrl: https://spec.openapis.org/oas/latest.html
+
+      - name: JSON Schema
+        description: This uses JSON Schema to define and validate all entities used.
+        docUrl: https://json-schema.org/specification
+
+      - name: Model Context Protocol
+        description: This uses MCP expressed as JSON schema to define each MCP server.
+        docUrl: https://modelcontextprotocol.io/
+
+      - name: Bruno Collections
+        description: This uses Bruno Collections to define each executable HTTP API integration.
+        docUrl: https://docs.usebruno.com/
+
+      - name: Bruno Environments
+        description: This uses Bruno Environments to store keys for each API to use in automation.
+        docUrl: https://docs.usebruno.com/secrets-management/overview
+
+  - type: Services
+    data:
+
+      - aid: microsoft-graph
+        name: Microsoft Graph
+        description: >-
+          Microsoft Graph is a unified API endpoint providing access to Microsoft 365
+          services including mail, calendar, contacts, documents, directory, devices,
+          and more.
+        docUrl: https://learn.microsoft.com/en-us/graph/
+        apisJson: >-
+          https://raw.githubusercontent.com/api-evangelist/microsoft-graph/refs/heads/main/apis.yml
+        loginUrl: https://portal.azure.com/
+        privacyPolicyUrl: https://privacy.microsoft.com/en-us/privacystatement
+
+maintainers:
+
+  - FN: Kin Lane
+    email: kinlane@naftiko.io
