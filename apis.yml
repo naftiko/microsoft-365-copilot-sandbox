@@ -15,7 +15,7 @@ tags:
   - Office
   - 365
 
-image: https://naftiko.s3.us-east-1.amazonaws.com/naftiko-logo-blue-icon.png
+image: https://naftiko.github.io/docs/images/monogram/monogram_full_color_512.png
 
 created: '2026-02-19'
 modified: '2026-02-19'
@@ -28,6 +28,9 @@ apis:
       name: Microsooft 365 Copilot API
       description: >-
         Working with Microsoft 365 Copilot, providing a sandbox for working with specific interaction scenarios as part of automation.
+      humanURL: https://github.com/naftiko/microsoft-365-copilot-sandbox
+      baseURL: http://localhost:8080/rest/microsoft-365-copilot-sandbox/1.0.0
+      image: https://naftiko.github.io/docs/images/monogram/monogram_full_color_512.png
       tags:
         - Copilots
         - Microsoft
@@ -48,6 +51,66 @@ apis:
 
 common:
 
+  - type: AgentSkill
+    url: skills/retrieve-relevant-content/SKILL.md
+
+  - type: AgentSkill
+    url: skills/search-onedrive-content/SKILL.md
+
+  - type: AgentSkill
+    url: skills/list-copilot-interactions/SKILL.md
+
+  - type: AgentSkill
+    url: skills/get-copilot-interaction/SKILL.md
+
+  - type: AgentSkill
+    url: skills/create-change-notification-subscription/SKILL.md
+
+  - type: AgentSkill
+    url: skills/list-change-notification-subscriptions/SKILL.md
+
+  - type: AgentSkill
+    url: skills/get-subscription/SKILL.md
+
+  - type: AgentSkill
+    url: skills/update-subscription/SKILL.md
+
+  - type: AgentSkill
+    url: skills/delete-subscription/SKILL.md
+
+  - type: AgentSkill
+    url: skills/get-meeting-insights/SKILL.md
+
+  - type: AgentSkill
+    url: skills/list-meetings-with-insights/SKILL.md
+
+  - type: AgentSkill
+    url: skills/send-message-to-copilot/SKILL.md
+
+  - type: AgentSkill
+    url: skills/create-chat-thread/SKILL.md
+
+  - type: AgentSkill
+    url: skills/get-chat-thread/SKILL.md
+
+  - type: AgentSkill
+    url: skills/get-copilot-usage-report/SKILL.md
+
+  - type: AgentSkill
+    url: skills/get-per-user-usage-details/SKILL.md
+
+  - type: AgentSkill
+    url: skills/list-apps-and-agents/SKILL.md
+
+  - type: AgentSkill
+    url: skills/get-specific-package/SKILL.md
+
+  - type: AgentSkill
+    url: skills/update-package/SKILL.md
+
+  - type: AgentSkill
+    url: skills/remove-package/SKILL.md
+
   - type: GitHubHttpUrl
     url: https://github.com/naftiko/microsoft-365-copilot-sandbox
 
@@ -65,27 +128,27 @@ common:
 
       - name: APIs.json
         description: This uses the APIs.json
-        docUrl: http://apisjson.org/
+        url: http://apisjson.org/
 
       - name: OpenAPI
         description: This uses OpenAPI to define access to all HTTP APIs.
-        docUrl: https://spec.openapis.org/oas/latest.html
+        url: https://spec.openapis.org/oas/latest.html
 
       - name: JSON Schema
         description: This uses JSON Schema to define and validate all entities used.
-        docUrl: https://json-schema.org/specification
+        url: https://json-schema.org/specification
 
       - name: Model Context Protocol
         description: This uses MCP expressed as JSON schema to define each MCP server.
-        docUrl: https://modelcontextprotocol.io/
+        url: https://modelcontextprotocol.io/
 
       - name: Bruno Collections
         description: This uses Bruno Collections to define each executable HTTP API integration.
-        docUrl: https://docs.usebruno.com/
+        url: https://docs.usebruno.com/
 
       - name: Bruno Environments
         description: This uses Bruno Environments to store keys for each API to use in automation.
-        docUrl: https://docs.usebruno.com/secrets-management/overview
+        url: https://docs.usebruno.com/secrets-management/overview
 
   - type: Services
     data:
@@ -96,7 +159,7 @@ common:
           Microsoft Graph is a unified API endpoint providing access to Microsoft 365
           services including mail, calendar, contacts, documents, directory, devices,
           and more.
-        docUrl: https://learn.microsoft.com/en-us/graph/
+        url: https://learn.microsoft.com/en-us/graph/
         apisJson: >-
           https://raw.githubusercontent.com/api-evangelist/microsoft-graph/refs/heads/main/apis.yml
         loginUrl: https://portal.azure.com/
