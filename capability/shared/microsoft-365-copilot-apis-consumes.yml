@@ -1,0 +1,33 @@
+naftiko: "1.0.0-alpha2"
+consumes:
+  - namespace: microsoft-365-copilot-apis
+    type: http
+    baseUri: "https://mocks.naftiko.net/rest/microsoft-365-copilot-apis/1.0.0"
+    resources:
+      - name: get-chat-thread-by-id
+        path: "/copilot/chat/threads/{{threadId}}"
+        operations:
+          - name: get-chat-thread-by-id
+            method: GET
+            inputParameters:
+              - name: threadId
+                in: path
+                required: true
+      - name: get-copilot-interaction
+        path: "/copilot/interactions/{{interactionId}}"
+        operations:
+          - name: get-copilot-interaction
+            method: GET
+            inputParameters:
+              - name: interactionId
+                in: path
+                required: true
+      - name: get-copilot-package-by-id
+        path: "/copilot/packages/{{packageId}}"
+        operations:
+          - name: get-copilot-package-by-id
+            method: GET
+            inputParameters:
+              - name: packageId
+                in: path
+                required: true

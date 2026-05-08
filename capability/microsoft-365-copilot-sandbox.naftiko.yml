@@ -1,0 +1,104 @@
+naftiko: "1.0.0-alpha2"
+
+info:
+  label: "Microsoft 365 Copilot Sandbox"
+  description: "Naftiko Sandbox — wraps the Microsoft 365 Copilot API mocks hosted at mocks.naftiko.net. Exposes MCP, REST, and Skill adapters for AI agents and downstream tools."
+  tags:
+    - "Microsoft 365 Copilot"
+    - "Naftiko Sandbox"
+    - MCP
+    - Mocks
+
+binds:
+  - namespace: "sandbox-env"
+    description: "Sandbox bearer token for the Naftiko Framework MCP server."
+    location: "file:///./shared/secrets.yaml"
+    keys:
+      MCP_SERVER_TOKEN: "mcp-server-token"
+
+capability:
+  consumes:
+    - import: microsoft-365-copilot-apis
+      location: ./shared/microsoft-365-copilot-apis-consumes.yml
+
+  exposes:
+    - type: mcp
+      address: "0.0.0.0"
+      port: 3001
+      namespace: microsoft-365-copilot-sandbox-tools
+      authentication:
+        type: bearer
+        token: "{{MCP_SERVER_TOKEN}}"
+      description: "Microsoft 365 Copilot MCP tools — backed by mocks.naftiko.net"
+      tools:
+        - name: get-chat-thread-by-id
+          description: "Get a chat thread"
+          call: microsoft-365-copilot-apis.get-chat-thread-by-id
+          inputParameters:
+            - name: threadId
+              in: path
+              required: true
+        - name: get-copilot-interaction
+          description: "Get a specific Copilot interaction"
+          call: microsoft-365-copilot-apis.get-copilot-interaction
+          inputParameters:
+            - name: interactionId
+              in: path
+              required: true
+        - name: get-copilot-package-by-id
+          description: "Get a specific package"
+          call: microsoft-365-copilot-apis.get-copilot-package-by-id
+          inputParameters:
+            - name: packageId
+              in: path
+              required: true
+
+    - type: rest
+      address: "0.0.0.0"
+      port: 3002
+      namespace: microsoft-365-copilot-sandbox-api
+      description: "Microsoft 365 Copilot REST adapter — exposes the same domain as REST resources."
+      resources:
+        - name: get-chat-thread-by-id
+          path: "/get-chat-thread-by-id"
+          operations:
+            - method: GET
+              call: microsoft-365-copilot-apis.get-chat-thread-by-id
+              inputParameters:
+                - name: threadId
+                  in: path
+                  required: true
+        - name: get-copilot-interaction
+          path: "/get-copilot-interaction"
+          operations:
+            - method: GET
+              call: microsoft-365-copilot-apis.get-copilot-interaction
+              inputParameters:
+                - name: interactionId
+                  in: path
+                  required: true
+        - name: get-copilot-package-by-id
+          path: "/get-copilot-package-by-id"
+          operations:
+            - method: GET
+              call: microsoft-365-copilot-apis.get-copilot-package-by-id
+              inputParameters:
+                - name: packageId
+                  in: path
+                  required: true
+
+    - type: skill
+      address: "0.0.0.0"
+      port: 3003
+      namespace: microsoft-365-copilot-sandbox-skills
+      description: "Microsoft 365 Copilot skill server for structured agent discovery."
+      groups:
+        - name: read-microsoft-365-copilot
+          description: "Read-only Microsoft 365 Copilot operations."
+          skills:
+            - name: get-chat-thread-by-id
+              call: microsoft-365-copilot-apis.get-chat-thread-by-id
+            - name: get-copilot-interaction
+              call: microsoft-365-copilot-apis.get-copilot-interaction
+            - name: get-copilot-package-by-id
+              call: microsoft-365-copilot-apis.get-copilot-package-by-id

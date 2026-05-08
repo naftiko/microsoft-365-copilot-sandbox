@@ -1,4 +1,0 @@
-name: Microsoft Graph Beta (preview features)
-variables:
-  - name: baseUrl
-    value: https://graph.microsoft.com/beta

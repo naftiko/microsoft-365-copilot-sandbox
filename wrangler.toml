@@ -1,0 +1,18 @@
+name = "naftiko-microsoft-365-copilot-sandbox"
+main = "src/index.ts"
+compatibility_date = "2026-05-06"
+compatibility_flags = ["nodejs_compat"]
+
+[[containers]]
+class_name = "Microsoft365CopilotSandboxContainer"
+image = "./Dockerfile"
+instance_type = "standard-1"
+max_instances = 1
+
+[[durable_objects.bindings]]
+name = "MICROSOFT_365_COPILOT_SANDBOX"
+class_name = "Microsoft365CopilotSandboxContainer"
+
+[[migrations]]
+tag = "v1"
+new_sqlite_classes = ["Microsoft365CopilotSandboxContainer"]
